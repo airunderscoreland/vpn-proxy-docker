@@ -1,0 +1,30 @@
+services:
+  vpn:
+    image: qmcgaw/gluetun
+    container_name: vpn-gateway
+    cap_add:
+      - NET_ADMIN
+    environment:
+      # For custom WireGuard configuration
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      # Alternatively, use a supported provider (e.g., mullvad, nordvpn, etc.)
+      # See: https://github.com/qdm12/gluetun-wiki
+    volumes:
+      # Mount your WireGuard config file
+      - ./wireguard/wg0.conf:/gluetun/wireguard/wg0.conf:ro
+    ports:
+      # Expose Privoxy on your local network
+      # Change IP to your server's IP or use 0.0.0.0:8118:8118 for all interfaces
+      - "8118:8118"
+    restart: unless-stopped
+
+  privoxy:
+    image: vimagick/privoxy
+    container_name: privoxy-filter
+    network_mode: "service:vpn"
+    volumes:
+      - ./privoxy-config:/etc/privoxy
+    restart: unless-stopped
+    depends_on:
+      - vpn

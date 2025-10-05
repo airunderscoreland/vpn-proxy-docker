@@ -1,0 +1,7 @@
+FILTER: tracking Remove tracking parameters
+s|\?utm_[^&]*&?||g
+s|&utm_[^&]*||g
+s|\?fbclid=[^&]*&?||g
+s|&fbclid=[^&]*||g
+s|\?gclid=[^&]*&?||g
+s|&gclid=[^&]*||g

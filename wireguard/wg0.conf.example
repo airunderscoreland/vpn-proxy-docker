@@ -1,0 +1,9 @@
+[Interface]
+PrivateKey = YOUR_PRIVATE_KEY_HERE
+Address = 10.x.x.x/32
+DNS = 10.x.x.x
+
+[Peer]
+PublicKey = SERVER_PUBLIC_KEY_HERE
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = SERVER_ADDRESS:PORT

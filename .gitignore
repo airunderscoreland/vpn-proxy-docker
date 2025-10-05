@@ -1,0 +1,18 @@
+# WireGuard config contains sensitive keys
+wireguard/*.conf
+*.conf
+
+# Logs and runtime data
+*.log
+privoxy-config/logfile
+
+# Docker volumes and cache
+.docker/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
